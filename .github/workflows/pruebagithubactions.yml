@@ -7,14 +7,27 @@ jobs:
   explorando_github_actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "El flujo de trabajo ha sido ejecutado en el evento: ${{ github.event_name }}"
-      - run: echo "El flujo de trabajo se está ejecutando en un servidor ${{ runner.os }} hospedado en GitHub"
-      - run: echo "El nombre de la rama es: ${{ github.ref }} y tu repositorio es: ${{ github.repository }}"
+      - name: Mostrar evento
+        run: echo "El flujo de trabajo ha sido ejecutado en el evento: ${{ github.event_name }}"
+
+      - name: Mostrar sistema operativo
+        run: echo "El flujo de trabajo se está ejecutando en un servidor ${{ runner.os }} hospedado en GitHub"
+
+      - name: Mostrar rama y repositorio
+        run: echo "El nombre de la rama es: ${{ github.ref }} y tu repositorio es: ${{ github.repository }}"
+
       - name: Verifica el código del repositorio
         uses: actions/checkout@v2
-      - run: echo "El repositorio: ${{ github.repository }} ha sido clonado al runner."
-      - run: echo "El flujo de trabajo está listo para verificar el código en el runner."
+
+      - name: Confirmar clonación
+        run: echo "El repositorio: ${{ github.repository }} ha sido clonado al runner."
+
+      - name: Verificación lista
+        run: echo "El flujo de trabajo está listo para verificar el código en el runner."
+
       - name: Listar archivos en el repositorio
         run: |
           ls ${{ github.workspace }}
-      - run: echo "El estado del trabajo es: ${{ job.status }}"
+
+      - name: Mostrar estado final
+        run: echo "El estado del trabajo es: ${{ job.status }}"
